@@ -7,6 +7,6 @@ class FacilitiesController < ApplicationController
 
   def show
     @facility = Facility.find(params[:id])
-    render json: @facility, include: {messages: {except: [:created_at, :updated_at, :facility_id]}}
+    render json: @facility, include: {messages: {except: [:created_at, :updated_at, :facility_id], include: [:graffitis]}}
   end
 end

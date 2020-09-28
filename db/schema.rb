@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_174927) do
+ActiveRecord::Schema.define(version: 2020_09_28_210531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 2020_09_28_174927) do
     t.string "image_url"
   end
 
+  create_table "graffitis", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_graffitis_on_message_id"
+    t.index ["user_id"], name: "index_graffitis_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "facility_id", null: false
@@ -31,5 +41,13 @@ ActiveRecord::Schema.define(version: 2020_09_28_174927) do
     t.index ["facility_id"], name: "index_messages_on_facility_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "graffitis", "messages"
+  add_foreign_key "graffitis", "users"
   add_foreign_key "messages", "facilities"
 end
