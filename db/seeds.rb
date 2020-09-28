@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-yucca = Facility.create(name: "Yucca Mountains", location: "Nevada")
+yucca = Facility.create(name: "Yucca Mountains", location: "Nevada", image_url: "https://s.abcnews.com/images/Technology/WireAP_586eab5fbb1044f69929c70a5861531b_16x9_992.jpg")
 
-pilot = Facility.create(name: "Waste Isolation Pilot Plant", location: "New Mexico")
+pilot = Facility.create(name: "Waste Isolation Pilot Plant", location: "New Mexico", image_url: "https://19january2017snapshot.epa.gov/sites/production/files/styles/large/public/2015-06/wipp_landscape.jpg")
 
 yucca.messages.create(content: "Something man-made is here")
 yucca.messages.create(content: "This place is not a place of honor... no highly esteemed deed is commemorated here... nothing valued is here.")
