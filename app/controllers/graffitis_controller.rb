@@ -4,7 +4,11 @@ class GraffitisController < ApplicationController
   def create
     if @message
       graffiti = @message.graffitis.create(content: params[:content], user_id: params[:user_id])
-      render json: graffiti, except: [:created_at, :updated_at, :message_id]
+      if graffiti.valid?
+        render json: graffiti, except: [:created_at, :updated_at, :message_id]
+      else
+        render json: {errors: graffiti.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      end
     end
   end
 
